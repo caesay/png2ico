@@ -4,7 +4,7 @@ This program uses [FreeImage](https://freeimage.sourceforge.io/) to combine mult
 
 ## Usage
 
-It takes any number of positional arguments as png inputs. It also supports wildcards (but not ** globs). The `-o` argument optionally specifies a custom output file.
+It takes any number of positional arguments as png inputs. It also supports wildcards (but not ** globs). The `-o` argument optionally specifies a custom output file name.
 
 ```cmd
 png2ico mylogo-*.png -o outlogo.ico
