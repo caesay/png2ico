@@ -6,8 +6,15 @@
 #include "flags.h"
 #include "glob.h"
 
+#if _WIN32
+#include "lib/x86/FreeImage.h"
+#pragma comment(lib, "lib/x86/FreeImage.lib")
+#endif
+
+#if _WIN64
 #include "lib/x64/FreeImage.h"
 #pragma comment(lib, "lib/x64/FreeImage.lib")
+#endif
 
 using namespace std;
 namespace fs = std::filesystem;
