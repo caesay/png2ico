@@ -19,22 +19,6 @@
 using namespace std;
 namespace fs = std::filesystem;
 
-// struct MultiBitmapDeletor
-// {
-//     void operator()(FIMULTIBITMAP* p)
-//     {
-//         FreeImage_CloseMultiBitmap(p);
-//     }
-// };
-//
-// struct BitmapDeletor
-// {
-//     void operator()(FIBITMAP* p)
-//     {
-//         FreeImage_Unload(p);
-//     }
-// };
-
 void printfree(FREE_IMAGE_FORMAT fif, const char* msg)
 {
     cout << msg << std::endl;
@@ -64,17 +48,14 @@ int main(int argc, char* argv[])
 
     FreeImage_SetOutputMessage(printfree);
 
-    // unique_ptr<FIMULTIBITMAP, MultiBitmapDeletor> ico(FreeImage_OpenMultiBitmap(FIF_ICO, "outfile.ico", TRUE, FALSE));
     FIMULTIBITMAP* ico = FreeImage_OpenMultiBitmap(FIF_ICO, outputFile.c_str(), TRUE, FALSE);
 
     for (const auto& file : files)
     {
-        // unique_ptr<FIBITMAP, BitmapDeletor> page(FreeImage_Load(FIF_PNG, file.c_str()));
         FIBITMAP* page = FreeImage_Load(FIF_PNG, file.c_str());
         FreeImage_AppendPage(ico, page);
         FreeImage_Unload(page);
     }
 
-    // FreeImage_SaveMultiBitmapToMemory(FIF_ICO, ico.get(), )
     FreeImage_CloseMultiBitmap(ico);
 }
